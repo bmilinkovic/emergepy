@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1689209446 "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.tex" "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.pdf" "paper" 1689209446
-  "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.aux" 1689209446 132 becad25d16353fbd81e5644d2e8bca32 ""
-  "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.tex" 1689209446 477 f17559f9d4df93c8ee41456320524655 ""
+["pdflatex"] 1689210872 "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.tex" "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.pdf" "paper" 1689210873
+  "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.aux" 1689210873 132 becad25d16353fbd81e5644d2e8bca32 ""
+  "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.tex" 1689210872 554 e7e30c8be26bd84f409f8f0b19d7dde7 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
@@ -21,11 +21,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1625456484 2724736 30772a42c51ba0e4d0ffef48829bc00b ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "paper.aux" 1689209446 132 becad25d16353fbd81e5644d2e8bca32 "pdflatex"
-  "paper.tex" 1689209446 477 f17559f9d4df93c8ee41456320524655 ""
+  "paper.aux" 1689210873 132 becad25d16353fbd81e5644d2e8bca32 "pdflatex"
+  "paper.tex" 1689210872 554 e7e30c8be26bd84f409f8f0b19d7dde7 ""
   (generated)
-  "paper.log"
+  "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.pdf"
   "paper.pdf"
+  "paper.log"
   "paper.aux"
   "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.log"
-  "/Users/borjanmilinkovic/Documents/gitdir/emergepy/article/paper.pdf"
