@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.linalg import subspace_angles
-from mvgc.utilsmvgc import symmetrise
+from utilsmvgc import symmetrise
 from itertools import combinations
 
 def gmetric(L1, L2, maxangle=False):
