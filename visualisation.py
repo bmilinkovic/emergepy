@@ -35,10 +35,10 @@ def plot_subspace_emergence(Loptx, n, m):
 
     """
 
-    c = list(combinations(range(1, n + 1), m))
+    c = list(combinations(range(1, n + 1), m)) # all n choose m combinations of the original system
     nc = len(c)
 
-    for k in range(nc):
+    for k in range(nc): 
         if Loptx[k] > 0.1:
             print(f"{k + 1:3d} : {' '.join(str(num) for num in c[k])} : {Loptx[k]:6.4f}")
 
@@ -68,59 +68,60 @@ def plot_subspace_emergence(Loptx, n, m):
     plt.savefig(f"dist_plot_{m}.png")
     plt.show()
 
+
 plot_subspace_emergence(array_data, n, m)
 
 
 
-# optimisation_dir = '/Users/borjanmilinkovic/Documents/gitdir/ssdi/networks/models/'
-# nweight_dir = '/Users/borjanmilinkovic/Documents/gitdir/TVBEmergence/networks/models/'
+optimisation_dir = '/Users/borjanmilinkovic/Documents/gitdir/ssdi/networks/models/'
+nweight_dir = '/Users/borjanmilinkovic/Documents/gitdir/TVBEmergence/networks/models/'
 
-# # load in data
-# eweight = sio.loadmat(os.path.join(optimisation_dir, 'sim_model_0339_15_06_2023.mat'))      # load in edge weights
-# eweight = eweight['eweight']    # extract edge weights
+# load in data
+eweight = sio.loadmat(os.path.join(optimisation_dir, 'sim_model_0339_15_06_2023.mat'))      # load in edge weights
+eweight = eweight['eweight']    # extract edge weights
 
-# # laoad in node weights and plot that
+# laoad in node weights and plot that
 
-# nweight = sio.loadmat(os.path.join(nweight_dir, 'nweight_mdim_8.mat'))      # load in node weights
-# nweight = nweight['nweight']    # extract node weights
+nweight = sio.loadmat(os.path.join(nweight_dir, 'nweight_mdim_8.mat'))      # load in node weights
+nweight = nweight['nweight']    # extract node weights
 
 
 
-# def plot_nweights(eweights, nweights, macrosize, opt_number):
+def plot_nweights(eweights, nweights, macrosize, opt_number):
         
-#         subset = pd.DataFrame(eweights)
+        subset = pd.DataFrame(eweights)
 
-#         G = nx.from_pandas_adjacency(subset, create_using=nx.MultiDiGraph)
-#         G.remove_edges_from(list(nx.selfloop_edges(G)))                    # remove self edges
-#         # Define the mapping from old labels to new labels
-#         mapping = {node: node + 1 for node in G.nodes}
+        G = nx.from_pandas_adjacency(subset, create_using=nx.MultiDiGraph)
+        G.remove_edges_from(list(nx.selfloop_edges(G)))                    # remove self edges
+        # Define the mapping from old labels to new labels
+        mapping = {node: node + 1 for node in G.nodes}
 
-#         # Relabel the nodes in the graph
-#         G = nx.relabel_nodes(G, mapping)
+        # Relabel the nodes in the graph
+        G = nx.relabel_nodes(G, mapping)
 
-#         # Plot the graph with the new labels
-#         #nx.draw(G, with_labels=True)
-#         edges, weights = zip(*nx.get_edge_attributes(G, 'weight').items()) # Extracts the edges and their corresponding weights into different tuples
+        # Plot the graph with the new labels
+        #nx.draw(G, with_labels=True)
+        edges, weights = zip(*nx.get_edge_attributes(G, 'weight').items()) # Extracts the edges and their corresponding weights into different tuples
 
-#         # PLOTTING THE PWCGC MATRIX, GRAPH AND MACRO PROJECTION ON GRAPH.
-#         fig = plt.figure(figsize=(8, 8))
-#         gs = GridSpec(nrows=1, ncols=1)
+        # PLOTTING THE PWCGC MATRIX, GRAPH AND MACRO PROJECTION ON GRAPH.
+        fig = plt.figure(figsize=(8, 8))
+        gs = GridSpec(nrows=1, ncols=1)
 
-#         ax0 = fig.add_subplot(gs[0, 0])
+        ax0 = fig.add_subplot(gs[0, 0])
         
-#         #ax0.set_title("{0}-Macro on GC-graph of coupled {1}-node model".format(int(macrosize), int(len(subset))), fontsize=18, fontweight='bold', pad=16)
-#         pos = nx.spring_layout(G, seed=7)
-#         nx.draw_networkx_nodes(G, pos, node_size=1600, node_color=nweights[:,opt_number], cmap=plt.cm.Blues, linewidths=1.0, edgecolors='black') # nweights[:,0] will plot the optimal projection of the first macro variable on the graph.
-#         nx.draw_networkx_edges(G, pos, arrows=True, arrowstyle="->", arrowsize=10.0, edgelist=edges, edge_color=weights, node_size=1600, width=3.0, connectionstyle='arc3,rad=0.13', edge_cmap=mpl.cm.bone_r)
-#         nx.draw_networkx_labels(G, pos, font_size=20, font_family="helvetica")
-#         edge_labels = dict([((u, v,), f"{d['weight']:.1f}") for u, v, d in G.edges(data=True)])
-#         # show the figure
-#         plt.axis('off')
-#         plt.tight_layout()
-#         plt.savefig('macro_{0}_on_GC_graph_{1}_node_model.png'.format(int(macrosize), int(len(subset))))
-#         plt.savefig('macro_{0}_on_GC_graph_{1}_node_model.eps'.format(int(macrosize), int(len(subset))))
-#         plt.show()
+        #ax0.set_title("{0}-Macro on GC-graph of coupled {1}-node model".format(int(macrosize), int(len(subset))), fontsize=18, fontweight='bold', pad=16)
+        pos = nx.spring_layout(G, seed=7)
+        nx.draw_networkx_nodes(G, pos, node_size=1600, node_color=nweights[:,opt_number], cmap=plt.cm.Blues, linewidths=1.0, edgecolors='black') # nweights[:,0] will plot the optimal projection of the first macro variable on the graph.
+        nx.draw_networkx_edges(G, pos, arrows=True, arrowstyle="->", arrowsize=10.0, edgelist=edges, edge_color=weights, node_size=1600, width=3.0, connectionstyle='arc3,rad=0.13', edge_cmap=mpl.cm.bone_r)
+        nx.draw_networkx_labels(G, pos, font_size=20, font_family="helvetica")
+        edge_labels = dict([((u, v,), f"{d['weight']:.1f}") for u, v, d in G.edges(data=True)])
+        # show the figure
+        plt.axis('off')
+        plt.tight_layout()
+        plt.savefig('macro_{0}_on_GC_graph_{1}_node_model.png'.format(int(macrosize), int(len(subset))))
+        plt.savefig('macro_{0}_on_GC_graph_{1}_node_model.eps'.format(int(macrosize), int(len(subset))))
+        plt.show()
 
 
 
-# fig = plot_nweights(eweight, nweight, 8, 0)
+fig = plot_nweights(eweight, nweight, 8, 0)
