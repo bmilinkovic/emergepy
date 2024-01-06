@@ -1,3 +1,4 @@
+#%%
 from itertools import combinations
 import numpy as np
 import pandas as pd
@@ -10,14 +11,14 @@ import scipy.io as sio
 import matplotlib as mpl
 
 # If you want to read CSV file into a NumPy array
-array_data = np.genfromtxt('dist_8.csv', delimiter=',')
+array_data = np.genfromtxt('dist_4.csv', delimiter=',')
 
 # If you want to read CSV file into a Pandas DataFrame
 #df = pd.read_csv('dist.csv')
 
 n = 9  # Replace with your desired value of n
-m = 8  # Replace with your desired value of m
-
+m = 4  # Replace with your desired value of m
+#%%
 def plot_subspace_emergence(Loptx, n, m):
     """ 
     Plots the distance between the optimal macroscopic coarse-graining Loptx 
@@ -43,9 +44,6 @@ def plot_subspace_emergence(Loptx, n, m):
             print(f"{k + 1:3d} : {' '.join(str(num) for num in c[k])} : {Loptx[k]:6.4f}")
 
     # Now we will plot all the set of n choose k subspaces on the x-axis and the value in Loptx on the y-axis as a bar graph
-    
-
-
     plt.figure(figsize=(13, 5))
     plt.bar(range(nc), Loptx, color="blue")
     plt.xlabel("Subspace", fontsize=16, fontweight="bold")
@@ -72,6 +70,8 @@ def plot_subspace_emergence(Loptx, n, m):
 plot_subspace_emergence(array_data, n, m)
 
 
+
+#%%
 
 optimisation_dir = '/Users/borjanmilinkovic/Documents/gitdir/ssdi/networks/models/'
 nweight_dir = '/Users/borjanmilinkovic/Documents/gitdir/TVBEmergence/networks/models/'

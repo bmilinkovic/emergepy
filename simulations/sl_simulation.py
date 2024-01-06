@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import hilbert, butter, filtfilt
@@ -5,7 +6,7 @@ import scipy.io as sio
 
 
 
-
+#%%
 def convert_back_to_time(fyo, Nsamples, freq_indtest):
     NumUniquePts = np.ceil((Nsamples + 1) / 2)
 
@@ -50,10 +51,10 @@ def bandpass(y, freqrange, fres, do_plot=False):
     
     return x
 
-
+#%%
 # Load the Structural Connectivity
 data = sio.loadmat('SC_90AAL_32HCP.mat')
-
+#%%
 # Access the variables in the .mat file
 C = data['C']  # Access the variable 'C' from the .mat file
 D = data['D']  # Access the variable 'D' from the .mat file
@@ -93,15 +94,25 @@ Delays = Max_History - Delays
 Z = dt * np.random.randn(N, int(Max_History)) + 1j * dt * np.random.randn(N, int(Max_History))
 Zsave = np.zeros((N, int(tmax / dt_save)))
 sumz = np.zeros(N).reshape(-1,1)
-
+#%% Run the simulation
 nt = 0
 for t in np.arange(dt, t_prev + tmax, dt):
     Znow = Z[:, -1].reshape(-1,1)
 
     dz = Znow * (a + iomega - np.abs(Znow ** 2)) * dt
 
+    sumz = np.zeros_like(Znow)
+
     for n in range(N):
-        sumz[n] = np.sum(kC[n, :] * (Z[((np.arange(1, N+1)) + (N * (Delays[n, :] - 1))).astype(int)] - Znow[n]))
+        indices = ((np.arange(1, N+1)) + (N * (Delays[n, :] - 1))).astype(int)
+        valid_indices = np.where(indices < Z.shape[1])[0]
+        if valid_indices.size > 0:
+            sumz[n] = np.sum(kC[n, valid_indices] * (Z[indices[valid_indices]] - Znow[n]))
+        else:
+            sumz[n] = 0
+
+    # Reshape sumz to have the same shape as Znow
+    sumz = sumz.reshape(Znow.shape)
 
     if MD:
         Z[:, :-1] = Z[:, 1:]
@@ -112,6 +123,7 @@ for t in np.arange(dt, t_prev + tmax, dt):
         nt += 1
         Zsave[:, nt - 1] = Z[:, -1]
 
+#%%
 # Load the .mat file
 mat = sio.loadmat('AAL_labels.mat')
 

@@ -96,6 +96,7 @@ def VAR_spectral_radius_decay(A, decay_factor):
                 A[:, :, i] = f * A[:, :, i]
                 f = decay_factor * f
         return A
+    
 
 def iss_rand(n, m, rhoa, dis=False):
     assert rhoa < 1
